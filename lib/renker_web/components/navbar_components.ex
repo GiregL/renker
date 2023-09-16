@@ -8,7 +8,7 @@ defmodule RenkerWeb.NavbarComponents do
   @links [
     %{name: "Accueil", url: "/"},
     %{name: "A propos", url: "/about"},
-    %{name: "Connexion", url: "/login"}
+    %{name: "Connexion", url: "/utilisateurs/log_in"}
   ]
   def links(), do: @links
 

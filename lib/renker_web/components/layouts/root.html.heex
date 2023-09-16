@@ -9,12 +9,52 @@
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/uikit.min.css"} />
     <link phx-track-static rel="stylesheet" href={~p"/assets/uikit-rtl.min.css"} />
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/uikit.min.js"}>
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/uikit-icons.min.js"}>
-    </script>
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/uikit.min.js"}></script>
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/uikit-icons.min.js"}></script>
   </head>
   <body>
+    <%!-- <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
+      <%= if @current_utilisateur do %>
+        <li class="text-[0.8125rem] leading-6 text-zinc-900">
+          <%= @current_utilisateur.email %>
+        </li>
+        <li>
+          <.link
+            href={~p"/utilisateurs/settings"}
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Settings
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/utilisateurs/log_out"}
+            method="delete"
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Log out
+          </.link>
+        </li>
+      <% else %>
+        <li>
+          <.link
+            href={~p"/utilisateurs/register"}
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Register
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/utilisateurs/log_in"}
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Log in
+          </.link>
+        </li>
+      <% end %>
+    </ul> --%>
     <%= @inner_content %>
   </body>
 </html>
