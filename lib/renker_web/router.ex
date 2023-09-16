@@ -31,10 +31,12 @@ defmodule RenkerWeb.Router do
   # Taches et tags
   #
 
-  scope "/", RenkerWeb do
+  scope "/taches", RenkerWeb do
     pipe_through [:browser, :require_authenticated_utilisateur]
 
-    get "/taches", TachesController, :home
+    get "/", TachesController, :home
+    get "/new", TachesController, :new
+    post "/new", TachesController, :post_new
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
