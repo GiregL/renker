@@ -6,7 +6,7 @@ defmodule RenkerWeb.UtilisateurResetPasswordLive do
   def render(assigns) do
     ~H"""
     <div class="mx-auto max-w-sm">
-      <.header class="text-center">Reset Password</.header>
+      <.header class="text-center">Réinitialiser son mot de passe</.header>
 
       <.simple_form
         for={@form}
@@ -15,7 +15,7 @@ defmodule RenkerWeb.UtilisateurResetPasswordLive do
         phx-change="validate"
       >
         <.error :if={@form.errors != []}>
-          Oops, something went wrong! Please check the errors below.
+          Oops, une erreur est survenue! Corrigez les erreurs ci-dessous.
         </.error>
 
         <.input field={@form[:password]} type="password" label="New password" required />
@@ -26,13 +26,13 @@ defmodule RenkerWeb.UtilisateurResetPasswordLive do
           required
         />
         <:actions>
-          <.button phx-disable-with="Resetting..." class="w-full">Reset Password</.button>
+          <.button phx-disable-with="Réinitialisation..." class="uk-button-primary">Réinitialiser le mot de passe</.button>
         </:actions>
       </.simple_form>
 
       <p class="text-center text-sm mt-4">
-        <.link href={~p"/utilisateurs/register"}>Register</.link>
-        | <.link href={~p"/utilisateurs/log_in"}>Log in</.link>
+        <.link href={~p"/utilisateurs/register"}>S'enregistrer</.link>
+        | <.link href={~p"/utilisateurs/log_in"}>Se connecter</.link>
       </p>
     </div>
     """

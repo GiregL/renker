@@ -7,22 +7,22 @@ defmodule RenkerWeb.UtilisateurConfirmationInstructionsLive do
     ~H"""
     <div class="mx-auto max-w-sm">
       <.header class="text-center">
-        No confirmation instructions received?
-        <:subtitle>We'll send a new confirmation link to your inbox</:subtitle>
+        Vous n'avez pas reçu d'instruction de confirmation?
+        <:subtitle>Nous allons envoyer de nouvelles instructions dans votre boite e-mail.</:subtitle>
       </.header>
 
       <.simple_form for={@form} id="resend_confirmation_form" phx-submit="send_instructions">
         <.input field={@form[:email]} type="email" placeholder="Email" required />
         <:actions>
           <.button phx-disable-with="Sending..." class="w-full">
-            Resend confirmation instructions
+            Renvoyer les instructions
           </.button>
         </:actions>
       </.simple_form>
 
       <p class="text-center mt-4">
-        <.link href={~p"/utilisateurs/register"}>Register</.link>
-        | <.link href={~p"/utilisateurs/log_in"}>Log in</.link>
+        <.link href={~p"/utilisateurs/register"}>S'enregistrer</.link>
+        | <.link href={~p"/utilisateurs/log_in"}>Se connecter</.link>
       </p>
     </div>
     """

@@ -6,8 +6,8 @@ defmodule RenkerWeb.UtilisateurSettingsLive do
   def render(assigns) do
     ~H"""
     <.header class="text-center">
-      Account Settings
-      <:subtitle>Manage your account email address and password settings</:subtitle>
+      Profil utilisateur
+      <:subtitle>Administrez vos données personnelles</:subtitle>
     </.header>
 
     <div class="space-y-12 divide-y">
@@ -29,7 +29,7 @@ defmodule RenkerWeb.UtilisateurSettingsLive do
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Email</.button>
+            <.button phx-disable-with="Changing...">Changer d'adresse e-mail</.button>
           </:actions>
         </.simple_form>
       </div>
@@ -65,7 +65,7 @@ defmodule RenkerWeb.UtilisateurSettingsLive do
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Password</.button>
+            <.button phx-disable-with="Changing...">Changer de mot de passe</.button>
           </:actions>
         </.simple_form>
       </div>

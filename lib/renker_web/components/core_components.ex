@@ -75,7 +75,7 @@ defmodule RenkerWeb.CoreComponents do
                   class="-m-3 flex-none p-3 opacity-20 hover:opacity-40"
                   aria-label={gettext("close")}
                 >
-                  <.icon name="hero-x-mark-solid" class="h-5 w-5" />
+                  <.icon name="hero-x-mark-solid"/>
                 </button>
               </div>
               <div id={"#{@id}-content"}>
@@ -120,13 +120,13 @@ defmodule RenkerWeb.CoreComponents do
       {@rest}
     >
       <p :if={@title} class="flex items-center gap-1.5 text-sm font-semibold leading-6">
-        <.icon :if={@kind == :info} name="hero-information-circle-mini" class="h-4 w-4" />
-        <.icon :if={@kind == :error} name="hero-exclamation-circle-mini" class="h-4 w-4" />
+        <.icon :if={@kind == :info} name="hero-information-circle-mini"/>
+        <.icon :if={@kind == :error} name="hero-exclamation-circle-mini"/>
         <%= @title %>
       </p>
       <p class="mt-2 text-sm leading-5"><%= msg %></p>
       <button type="button" class="group absolute top-1 right-1 p-2" aria-label={gettext("close")}>
-        <.icon name="hero-x-mark-solid" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
+        <.icon name="hero-x-mark-solid"/>
       </button>
     </div>
     """
@@ -153,7 +153,7 @@ defmodule RenkerWeb.CoreComponents do
       phx-connected={hide("#client-error")}
       hidden
     >
-      Attempting to reconnect <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+      Attempting to reconnect <.spinner/>
     </.flash>
 
     <.flash
@@ -165,8 +165,14 @@ defmodule RenkerWeb.CoreComponents do
       hidden
     >
       Hang in there while we get back on track
-      <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+      <.spinner/>
     </.flash>
+    """
+  end
+
+  def spinner(assigns) do
+    ~H"""
+    <div uk-spinner></div>
     """
   end
 
@@ -183,24 +189,24 @@ defmodule RenkerWeb.CoreComponents do
         </:actions>
       </.simple_form>
   """
-  attr :for, :any, required: true, doc: "the datastructure for the form"
-  attr :as, :any, default: nil, doc: "the server side parameter to collect all input under"
+  attr :for, :any, required: true, doc: "Structure de donnée du formulaire"
+  attr :as, :any, default: nil, doc: "Le paramètre côté serveur pour récupérer les données"
 
   attr :rest, :global,
     include: ~w(autocomplete name rel action enctype method novalidate target multipart),
-    doc: "the arbitrary HTML attributes to apply to the form tag"
+    doc: "Tags HTML arbitraires a appliquer sur un tag du formulaire"
 
   slot :inner_block, required: true
-  slot :actions, doc: "the slot for form actions, such as a submit button"
+  slot :actions, doc: "Slot des actions comme le bouton d'envoi"
 
   def simple_form(assigns) do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
-      <div class="mt-10 space-y-8 bg-white">
+      <div class="uk-margin-small-bottom">
         <%= render_slot(@inner_block, f) %>
-        <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
-          <%= render_slot(action, f) %>
-        </div>
+      </div>
+      <div :for={action <- @actions} class="uk-margin-small-bottom">
+        <%= render_slot(action, f) %>
       </div>
     </.form>
     """
@@ -224,11 +230,7 @@ defmodule RenkerWeb.CoreComponents do
     ~H"""
     <button
       type={@type}
-      class={[
-        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
-        "text-sm font-semibold leading-6 text-white active:text-white/80",
-        @class
-      ]}
+      class={["uk-button uk-button-default", @class]}
       {@rest}
     >
       <%= render_slot(@inner_block) %>
@@ -309,7 +311,7 @@ defmodule RenkerWeb.CoreComponents do
           name={@name}
           value="true"
           checked={@checked}
-          class="rounded border-zinc-300 text-zinc-900 focus:ring-0"
+          class="uk-checkbox"
           {@rest}
         />
         <%= @label %>
@@ -326,7 +328,7 @@ defmodule RenkerWeb.CoreComponents do
       <select
         id={@id}
         name={@name}
-        class="mt-2 block w-full rounded-md border border-gray-300 bg-white shadow-sm focus:border-zinc-400 focus:ring-0 sm:text-sm"
+        class="uk-select"
         multiple={@multiple}
         {@rest}
       >
@@ -345,12 +347,7 @@ defmodule RenkerWeb.CoreComponents do
       <textarea
         id={@id}
         name={@name}
-        class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          "min-h-[6rem] phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
-        ]}
+        class={[ "uk-textarea" ]}
         {@rest}
       ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
       <.error :for={msg <- @errors}><%= msg %></.error>
@@ -368,11 +365,8 @@ defmodule RenkerWeb.CoreComponents do
         name={@name}
         id={@id}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
-        class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
+        class={[ "uk-input",
+          @errors != [] && "uk-form-danger"
         ]}
         {@rest}
       />
@@ -389,7 +383,7 @@ defmodule RenkerWeb.CoreComponents do
 
   def label(assigns) do
     ~H"""
-    <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800">
+    <label for={@for} class="">
       <%= render_slot(@inner_block) %>
     </label>
     """
@@ -402,10 +396,10 @@ defmodule RenkerWeb.CoreComponents do
 
   def error(assigns) do
     ~H"""
-    <p class="mt-3 flex gap-3 text-sm leading-6 text-rose-600 phx-no-feedback:hidden">
-      <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
+    <div class="uk-alert-danger" uk-alert>
+      <.icon name="close"/>
       <%= render_slot(@inner_block) %>
-    </p>
+    </div>
     """
   end
 
@@ -420,16 +414,16 @@ defmodule RenkerWeb.CoreComponents do
 
   def header(assigns) do
     ~H"""
-    <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
+    <header class={[@actions != [], @class]}>
       <div>
-        <h1 class="text-lg font-semibold leading-8 text-zinc-800">
+        <h1>
           <%= render_slot(@inner_block) %>
         </h1>
-        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-zinc-600">
+        <p :if={@subtitle != []}>
           <%= render_slot(@subtitle) %>
         </p>
       </div>
-      <div class="flex-none"><%= render_slot(@actions) %></div>
+      <div><%= render_slot(@actions) %></div>
     </header>
     """
   end
@@ -554,7 +548,7 @@ defmodule RenkerWeb.CoreComponents do
         navigate={@navigate}
         class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
       >
-        <.icon name="hero-arrow-left-solid" class="h-3 w-3" />
+        <.icon name="hero-arrow-left-solid"/>
         <%= render_slot(@inner_block) %>
       </.link>
     </div>
@@ -580,11 +574,10 @@ defmodule RenkerWeb.CoreComponents do
       <.icon name="hero-arrow-path" class="ml-1 w-3 h-3 animate-spin" />
   """
   attr :name, :string, required: true
-  attr :class, :string, default: nil
 
-  def icon(%{name: "hero-" <> _} = assigns) do
+  def icon(assigns) do
     ~H"""
-    <span class={[@name, @class]} />
+    <span uk-icon={@name} />
     """
   end
 

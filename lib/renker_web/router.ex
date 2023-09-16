@@ -27,6 +27,16 @@ defmodule RenkerWeb.Router do
     get "/", PageController, :home
   end
 
+  #
+  # Taches et tags
+  #
+
+  scope "/", RenkerWeb do
+    pipe_through [:browser, :require_authenticated_utilisateur]
+
+    get "/taches", TachesController, :home
+  end
+
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:renker, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put

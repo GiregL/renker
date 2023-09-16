@@ -7,21 +7,21 @@ defmodule RenkerWeb.UtilisateurForgotPasswordLive do
     ~H"""
     <div class="mx-auto max-w-sm">
       <.header class="text-center">
-        Forgot your password?
-        <:subtitle>We'll send a password reset link to your inbox</:subtitle>
+        Vous avez oublié votre mot de passe?
+        <:subtitle>Nous allons vous renvoyer un lien de changement de mot de passe par e-mail</:subtitle>
       </.header>
 
       <.simple_form for={@form} id="reset_password_form" phx-submit="send_email">
         <.input field={@form[:email]} type="email" placeholder="Email" required />
         <:actions>
-          <.button phx-disable-with="Sending..." class="w-full">
-            Send password reset instructions
+          <.button class="uk-button-warning" phx-disable-with="Sending...">
+            Envoyer les instructions
           </.button>
         </:actions>
       </.simple_form>
-      <p class="text-center text-sm mt-4">
-        <.link href={~p"/utilisateurs/register"}>Register</.link>
-        | <.link href={~p"/utilisateurs/log_in"}>Log in</.link>
+      <p class="text-center">
+        <.link href={~p"/utilisateurs/register"}>S'enregistrer</.link>
+        | <.link href={~p"/utilisateurs/log_in"}>Se connecter</.link>
       </p>
     </div>
     """
@@ -40,7 +40,7 @@ defmodule RenkerWeb.UtilisateurForgotPasswordLive do
     end
 
     info =
-      "If your email is in our system, you will receive instructions to reset your password shortly."
+      "Si votre adresse est dans nos systèmes, vous recevrez le mail sous peu."
 
     {:noreply,
      socket

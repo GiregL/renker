@@ -8,13 +8,12 @@ defmodule RenkerWeb.UtilisateurRegistrationLive do
     ~H"""
     <div class="mx-auto max-w-sm">
       <.header class="text-center">
-        Register for an account
+        Créer un compte
         <:subtitle>
-          Already registered?
+          Déjà enregistré ?
           <.link navigate={~p"/utilisateurs/log_in"} class="font-semibold text-brand hover:underline">
-            Sign in
+            Se connecter
           </.link>
-          to your account now.
         </:subtitle>
       </.header>
 
@@ -28,14 +27,14 @@ defmodule RenkerWeb.UtilisateurRegistrationLive do
         method="post"
       >
         <.error :if={@check_errors}>
-          Oops, something went wrong! Please check the errors below.
+          Oops, une erreur est survenue! Merci de vérifier les erreurs ci-dessous.
         </.error>
 
-        <.input field={@form[:email]} type="email" label="Email" required />
-        <.input field={@form[:password]} type="password" label="Password" required />
+        <.input field={@form[:email]} type="email" label="Adresse e-mail" required />
+        <.input field={@form[:password]} type="password" label="Mot de passe" required />
 
         <:actions>
-          <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+          <.button class="uk-button-primary" phx-disable-with="Création du compte...">Créer son compte</.button>
         </:actions>
       </.simple_form>
     </div>

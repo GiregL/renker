@@ -3,31 +3,34 @@ defmodule RenkerWeb.UtilisateurLoginLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
+    <div>
       <.header class="text-center">
-        Sign in to account
+        Connexion
         <:subtitle>
-          Don't have an account?
+          Vous n'avez pas de compte utilisateur?
           <.link navigate={~p"/utilisateurs/register"} class="font-semibold text-brand hover:underline">
-            Sign up
+            Enregistrez vous
           </.link>
-          for an account now.
+          sur notre application.
         </:subtitle>
       </.header>
 
+      <div class="">
+
+      </div>
       <.simple_form for={@form} id="login_form" action={~p"/utilisateurs/log_in"} phx-update="ignore">
         <.input field={@form[:email]} type="email" label="Email" required />
-        <.input field={@form[:password]} type="password" label="Password" required />
+        <.input field={@form[:password]} type="password" label="Mot de passe" required />
 
         <:actions>
-          <.input field={@form[:remember_me]} type="checkbox" label="Keep me logged in" />
-          <.link href={~p"/utilisateurs/reset_password"} class="text-sm font-semibold">
-            Forgot your password?
+          <.input field={@form[:remember_me]} type="checkbox" label="Se souvenir de moi" />
+          <.link href={~p"/utilisateurs/reset_password"}>
+            Mot de passe oublié ?
           </.link>
         </:actions>
         <:actions>
-          <.button phx-disable-with="Signing in..." class="w-full">
-            Sign in <span aria-hidden="true">→</span>
+          <.button class="uk-button-primary" phx-disable-with="Signing in...">
+            Se connecter <.icon name="sign-in" />
           </.button>
         </:actions>
       </.simple_form>

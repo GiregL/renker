@@ -6,18 +6,18 @@ defmodule RenkerWeb.UtilisateurConfirmationLive do
   def render(%{live_action: :edit} = assigns) do
     ~H"""
     <div class="mx-auto max-w-sm">
-      <.header class="text-center">Confirm Account</.header>
+      <.header class="text-center">Confirmer un compte</.header>
 
       <.simple_form for={@form} id="confirmation_form" phx-submit="confirm_account">
         <.input field={@form[:token]} type="hidden" />
         <:actions>
-          <.button phx-disable-with="Confirming..." class="w-full">Confirm my account</.button>
+          <.button phx-disable-with="Confirmation en cours..." class="uk-button-primary">Confirmer mon compte</.button>
         </:actions>
       </.simple_form>
 
       <p class="text-center mt-4">
-        <.link href={~p"/utilisateurs/register"}>Register</.link>
-        | <.link href={~p"/utilisateurs/log_in"}>Log in</.link>
+        <.link href={~p"/utilisateurs/register"}>S'enregistrer</.link>
+        | <.link href={~p"/utilisateurs/log_in"}>Se connecter</.link>
       </p>
     </div>
     """
