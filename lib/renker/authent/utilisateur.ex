@@ -1,4 +1,5 @@
 defmodule Renker.Authent.Utilisateur do
+  alias Renker.Authent.UtilisateurRoles
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,6 +8,7 @@ defmodule Renker.Authent.Utilisateur do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    field :role, Ecto.Enum, values: UtilisateurRoles.roles, default: :user
     has_many :taches, Renker.Tache
     timestamps()
   end

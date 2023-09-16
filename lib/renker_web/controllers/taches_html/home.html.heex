@@ -1,1 +1,8 @@
 <h1>Taches</h1>
+
+<%= for tache <- @taches do %>
+    <div class="uk-card uk-card-body">
+        <h3 class="uk-card-title"><%= tache.titre %></h3>
+        <p><%= tache.description %></p>
+    </div>
+<% end %>

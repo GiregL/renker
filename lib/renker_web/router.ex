@@ -85,7 +85,7 @@ defmodule RenkerWeb.Router do
   scope "/", RenkerWeb do
     pipe_through [:browser]
 
-    delete "/utilisateurs/log_out", UtilisateurSessionController, :delete
+    get "/utilisateurs/log_out", UtilisateurSessionController, :delete
 
     live_session :current_utilisateur,
       on_mount: [{RenkerWeb.UtilisateurAuth, :mount_current_utilisateur}] do
